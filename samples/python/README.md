@@ -1,0 +1,2 @@
+# Python Web Hook Integration with the Centricient Platform
+This is a simple example of using Python and Flask to create a microservice that can be called from the Centricient Platform whenever system events occur.
