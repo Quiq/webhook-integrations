@@ -1,0 +1,34 @@
+group 'com.centricient.sample'
+version '0.1.1'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': version)
+    }
+}
+
+mainClassName = 'com.centricient.sample.HookConsumerApplication'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+project.ext {
+    dropwizardVersion = "0.9.1"
+}
+
+dependencies {
+    // Drop wizard dependencies
+    compile "io.dropwizard:dropwizard-core:" + dropwizardVersion 
+    compile "io.dropwizard:dropwizard-jackson:" + dropwizardVersion 
+}
+
+
+task projectVersion << {
+    println version
+}
