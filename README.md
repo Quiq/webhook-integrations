@@ -139,3 +139,4 @@ The Centricient Platform gracefully handles when an error occurs while calling a
 ### Sample Code
 We have provided some sample code in different technologies so you can easily see how to integrate. If you are working in a technology we don't yet have a sample for we suggest you check out the [Python Sample](samples/python) as it is very straightfoward to understand and translate into your given techonology stack.
 * [Python Sample](samples/python) - Uses python and flask to host a self-contained microservice integration
+* [Java Sample](samples/java) - Uses java and the Dropwizard framework to host a self-contained microservice integration
