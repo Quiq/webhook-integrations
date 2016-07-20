@@ -29,7 +29,7 @@ When the test web hook API is called Centricient will post to your registered we
 ```
 
 #### ConversationStatusChanged Event Type
-Whenever a conversation status changes we will call your webhook with this event. This includes when a new conversation is created, when a conversation is made inactive or reactivated, and when a conversation is closed. The data property of the event will contain a conversation object.
+Whenever a conversation status changes we will call your webhook with this event. This includes when a conversation is created, made inactive, reactivated or closed. The data property of the event will contain a conversation object as described below. *Please note that it's possible for a closed conversation to be reactivated. Therefore, a ConversationStatusChanged event with status == "closed" cannot be interpreted as marking the end of a conversation lifecycle.*
 
 **Conversation Object**
 
