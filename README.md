@@ -37,11 +37,14 @@ Whenever a conversation status changes we will call your webhook with this event
 |---|---|
 |id | String: Conversation ID|
 |owner | String: Who the conversation is currently assigned to - can be empty if not currently assigned|
-|status | ConversationStatus: new, active, inactive, closed 
+|status | ConversationStatus: requested, active, inactive, closed, deniedAsSpam*, mergedAsDangling* 
 |collaboration | Conversation: Nested conversation object if there was a collaboration |
 |messages | List of Messages: Messages in the conversation|
 |metrics | ConversationMetrics: Nested metrics object|
 |integrationsData| Mapping of custom integrations data (INTEGRATION_ID -> INTEGRATION_VALUE) |
+
+*deniedAsSpam is a special final state a conversation request can be transitioned to if the request is identified as spam.
+*mergedAsDangling occurs in scenarios such as when a previous conversation is marked as done and the customer responds with thank you. In this scenario the conversation request can be merged into the previous conversation.
 
 **ConversationMetrics Object**
 
