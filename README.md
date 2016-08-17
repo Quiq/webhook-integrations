@@ -37,7 +37,8 @@ Whenever a conversation status changes we will call your webhook with this event
 |---|---|
 |id | String: Conversation ID|
 |owner | String: Who the conversation is currently assigned to - can be empty if not currently assigned|
-|status | ConversationStatus: requested, active, inactive, closed, *deniedAsSpam*, *mergedAsDangling* 
+|status | ConversationStatus: requested, active, inactive, closed, *deniedAsSpam*, *mergedAsDangling* |
+|customerPlatform | MessagePlatform for customer: SMS, Facebook, etc. (N/A for collaborations) |
 |collaboration | Conversation: Nested conversation object if there was a collaboration |
 |messages | List of Messages: Messages in the conversation|
 |metrics | ConversationMetrics: Nested metrics object|
