@@ -134,6 +134,12 @@ Whenever a conversation status changes we will call your webhook with this event
 }
 ```
 
+### Administration
+We're still building out webhook adminstration from within our primary messaging app. In the meantime, we've put together
+a basic hook administration page available at https://greatcompany.centricient.com/external/hooks/development, where
+greatcompany.centricient.com is replaced by the domain you use to login to your Centricient site. You must be logged-in
+to the primary messaging while using the hook administration page.
+
 ### In case of errors
 The Centricient Platform gracefully handles when an error occurs while calling an external web hook. These errors can occur because your hook returns a non 200 level HTTP response or a timeout occurs trying to call your hook. In either of these scenarios we will retry a few seconds later and continue retrying with an exponential back off. We will also send all of the site admins an email when an error first occurs and periodically after that. Once the errors quit occuring all events that were published while the error occurred will be passed to the webhook.
 
