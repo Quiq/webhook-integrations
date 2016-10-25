@@ -91,9 +91,11 @@ Many integrations will only need the ConversationClosed event as that correspond
 | triggeredBy | Entity object that identifies who triggered the event |
 
 **Entity Object**
+
+| Property | Description |
 |---|---|
 | type | String: The type of entity. Legal values are "customer", "user" and "system" |
-| id | Optional string identifier for the entity. Currently only populated for "user" entities
+| id | Optional string identifier for the entity. Currently only populated for "user" entities |
 
 
 **Example JSON:**
