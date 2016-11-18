@@ -18,7 +18,7 @@ Whenever Centricient calls your registered webhook we will pass JSON to you in t
 _Note: The ID will be unique for each unique event in the system. On rare occasions you may receive a call to your webhook with a duplicate payload as a previous call. You can use this ID to verify that this is in fact a duplicate message you are receiving. These scenarios can occur for example if we publish to your endpoint and don't receive a timely response because of network issues. We will then republish the message in order to make sure you've received it._
 
 #### Test Event Type
-When the test webhook API is called Centricient will post to your registered webhook with an event type of Test. It is expected that you will respond with a valid 200 response code. 
+When the test webhook API is called Centricient will post to your registered webhook with an event type of Test. It is expected that you will respond with a valid 200 response code.
 
 **Example Json:**
 ```json
@@ -39,7 +39,7 @@ There are webhook events corresponding to the various state transitions that a c
 * ConversationDeniedAsSpam - Occurs when an agent (or the system timer) marks a conversation as being spam. This is a terminal event for the conversation
 * ConversationMergedAsDangling - Occurs when a requested conversation is later recognized as a continuation of a previous conversation and is 'merged' into that conversation. This is a terminal event for the conversation
 
-Many integrations will only need the ConversationClosed event as that corresponds to an agent finishing a customer interaction. The data payload for the above events is a Conversation object: 
+Many integrations will only need the ConversationClosed event as that corresponds to an agent finishing a customer interaction. The data payload for the above events is a Conversation object:
 
 | Property | Description|
 |---|---|
@@ -78,9 +78,10 @@ Many integrations will only need the ConversationClosed event as that correspond
 
 | Property | Description |
 |---|---|
-| assetId | Identifier of aasset |
+| assetId | Identifier of asset |
 | contentType | Type of content (such as image/png) |
-| oneTimeUrl | Url that can be used once to fetch the asset |
+
+*See [our public api](./PublicAPI.md) documentation for information on how to fetch assets*
 
 **ConversationEvent Object**
 
@@ -119,9 +120,8 @@ Many integrations will only need the ConversationClosed event as that correspond
             "author":"some-agent1",
             "assets":[
                {
-                  "oneTimeUrl":"https://inbound.centricient.com/web/assets/onetime/08af0f24-a59a-4eef-bfe2-29812168ed47",
-                  "contentType":"image/png",
-                  "assetId":"6a3d60fe595901e9aecc2cc0f740daec0a79e124701f57fe36e315548cf6c3e5"
+                  "assetId":"6a3d60fe595901e9aecc2cc0f740daec0a79e124701f57fe36e315548cf6c3e5",
+                  "contentType":"image/png"
                }
             ],
             "timestamp":1468865702716,
@@ -133,7 +133,6 @@ Many integrations will only need the ConversationClosed event as that correspond
          {
             "author":"some-agent1",
             "assets":[
-
             ],
             "timestamp":1468865758932,
             "sourcePlatform":"Centricient",
@@ -142,8 +141,9 @@ Many integrations will only need the ConversationClosed event as that correspond
             "id":"23e2c368-7a26-4906-b04f-c72cee049e07"
          }
       ],
-      "integrationsData":{"Some-Integration-Provider": "Some custom data",
-        "Other-Integration-Provider": "Other cusotm data"
+      "integrationsData":{
+        "Some-Integration-Provider": "Some custom data",
+        "Other-Integration-Provider": "Other custom data"
       },
       "events": [
         {
@@ -169,7 +169,7 @@ Many integrations will only need the ConversationClosed event as that correspond
             "id": "some-agent1"
           }
         },
-      ]
+      ],
       "collaboration":null,
       "id":"a918f237-88f4-44cc-9072-84e2880e3b7d",
       "status":"closed",
@@ -185,18 +185,19 @@ Many integrations will only need the ConversationClosed event as that correspond
 ```
 
 ### Administration
-We're still building out webhook adminstration from within our primary messaging app. In the meantime, we've put together
+We're still building out webhook administration from within our primary messaging app. In the meantime, we've put together
 a basic hook administration page available at https://greatcompany.centricient.com/external/hooks/development, where
 greatcompany.centricient.com is replaced by the domain you use to login to your Centricient site. You must be logged-in
 to the primary messaging app while using the hook administration page.
 
 ### In case of errors
-The Centricient Platform gracefully handles when an error occurs while calling an external webhook. These errors can occur because your hook returns a non 200 level HTTP response or a timeout occurs trying to call your hook. In either of these scenarios we will retry a few seconds later and continue retrying with an exponential back off. We will also send all of the site admins an email when an error first occurs and periodically after that. Once the errors quit occuring all events that were published while the error occurred will be passed to the webhook.
+The Centricient Platform gracefully handles when an error occurs while calling an external webhook. These errors can occur because your hook returns a non 200 level HTTP response or a timeout occurs trying to call your hook. In either of these scenarios we will retry a few seconds later and continue retrying with an exponential back off. We will also send all of the site admins an email when an error first occurs and periodically after that. Once the errors quit occurring all events that were published while the error occurred will be passed to the webhook.
 
 ### Developer tips
-* **Running/Debugging behind private firewall**: If you are running on a development box behind a firewall and don't have a way to route traffic from a public URL we suggest checking out [ngrok](https://ngrok.com) as a simple (and free) tool to route traffic in this scenario. 
+* **Running/Debugging behind private firewall**: If you are running on a development box behind a firewall and don't have a way to route traffic from a public URL we suggest checking out [ngrok](https://ngrok.com) as a simple (and free) tool to route traffic in this scenario.
 
 ### Sample Code
-We have provided some sample code in different technologies so you can easily see how to integrate. If you are working in a technology we don't yet have a sample for we suggest you check out the [Python Sample](samples/python) as it is very straightfoward to understand and translate into your given techonology stack.
+We have provided some sample code in different technologies so you can easily see how to integrate. If you are working in a technology we don't yet have a sample for we suggest you check out the [Python Sample](samples/python) as it is very straightforward to understand and translate into your given technology stack.
 * [Python Sample](samples/python) - Uses python and flask to host a self-contained microservice integration
 * [Java Sample](samples/java) - Uses java and the Dropwizard framework to host a self-contained microservice integration
+
