@@ -168,14 +168,14 @@ Many integrations will only need the ConversationClosed event as that correspond
             "type": "user",
             "id": "some-agent1"
           }
-        },
+        }
       ]
       "collaboration":null,
       "id":"a918f237-88f4-44cc-9072-84e2880e3b7d",
       "status":"closed",
       "metrics":{
         "timeToFirstResponse": 30000,
-        "averageResponseTime": 45000,
+        "averageResponseTime": 45000
       },
       "owner":"some-agent1",
       "startTime":1468865667018,
