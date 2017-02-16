@@ -110,8 +110,6 @@ Many integrations will only need the ConversationClosed event as that correspond
 |lastName | String: The last name of the customer |
 
 
-
-
 **Example JSON:**
 ```json
 {
