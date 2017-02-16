@@ -106,8 +106,8 @@ Many integrations will only need the ConversationClosed event as that correspond
 
 | Property | Description |
 |---|---|
-|firstName | String: The first name of the customer |
-|lastName | String: The last name of the customer |
+|firstName | String: The first name of the customer. Can be null when the name is unknown. |
+|lastName | String: The last name of the customer. Can be null when the name is unknown. |
 
 
 **Example JSON:**
