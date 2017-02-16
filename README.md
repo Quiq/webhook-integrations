@@ -47,6 +47,8 @@ Many integrations will only need the ConversationClosed event as that correspond
 |owner | String: Who the conversation is currently assigned to - can be empty if not currently assigned|
 |status | ConversationStatus: requested, active, inactive, closed, *deniedAsSpam*, *mergedAsDangling* |
 |customerPlatform | MessagePlatform for customer: SMS, Facebook, etc. (N/A for collaborations) |
+|customer | Contact: Nested Contact object |
+|endpointId | String: The ID of the endpoint for this conversation |
 |collaboration | Conversation: Nested conversation object if there was a collaboration |
 |events| A list of ConversationEvent objects that had occurred on this conversation at the time of the webhook event
 |messages | List of Messages: Messages in the conversation|
@@ -54,6 +56,8 @@ Many integrations will only need the ConversationClosed event as that correspond
 |integrationsData| Mapping of custom integrations data (INTEGRATION_ID -> INTEGRATION_VALUE) |
 |startTime| The time the conversation started |
 |endTime| The time the conversation ended, if applicable |
+|customerHandle| String: an identifier (Phone Number, Facebook ID, Kik Handle, etc.) for the end-user of the conversation |
+|queue| String: The queue of the convesation |
 
 **ConversationMetrics Object**
 
@@ -96,6 +100,16 @@ Many integrations will only need the ConversationClosed event as that correspond
 |---|---|
 | type | String: The type of entity. Legal values are "customer", "user" and "system" |
 | id | Optional string identifier for the entity. Currently only populated for "user" entities |
+
+
+**Contact Object**
+
+| Property | Description |
+|---|---|
+|firstName | String: The first name of the customer |
+|lastName | String: The last name of the customer |
+
+
 
 
 **Example JSON:**
@@ -173,6 +187,14 @@ Many integrations will only need the ConversationClosed event as that correspond
       "collaboration":null,
       "id":"a918f237-88f4-44cc-9072-84e2880e3b7d",
       "status":"closed",
+      "queue": "your_queue",
+      "customerHandle": "+00008313423",
+      "customerPlatform": "SMS",
+      "endpointId": "+14068675309",
+      "customer": {
+        "firstName": "some",
+        "lastName": "customer"
+      },
       "metrics":{
         "timeToFirstResponse": 30000,
         "averageResponseTime": 45000
